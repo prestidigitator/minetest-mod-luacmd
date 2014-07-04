@@ -50,6 +50,20 @@ Version 1.0
 * Released 2014-07-04
 * First working version
 
+Version 1.1
+
+* Release 2014-07-04
+* Variable 'me': reference to current player object
+* Variable 'myname': current player's name
+* Variable 'here': current player's position as a printable vector
+* Made the print(...) function a little more useful: converts args to strings
+
+Try the following commands:
+
+   /lua me:set_physics_override({ jump = 10.0 });
+   /lua print(myname);
+   /lua print(here);
+
 Copyright and Licensing
 -----------------------
 
