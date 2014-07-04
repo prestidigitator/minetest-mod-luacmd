@@ -36,7 +36,9 @@ Required Minetest Version: (tested in 0.4.9)
 
 Dependencies: (none)
 
-Commands: /lua <luaStatement>
+Commands:
+   * /lua <luaStatement>
+   * /luaclear
 
 Privileges: lua
 
@@ -63,6 +65,16 @@ Try the following commands:
    /lua me:set_physics_override({ jump = 10.0 });
    /lua print(myname);
    /lua print(here);
+
+Version 1.2
+
+* Release 2014-07-04
+* Keeps "global" variables set by commands in a player-local context.
+* Prevents setting of special variables (e.g. me, myname, here, print).
+* Added /luaclear command to clear the player-local context.
+
+To set true globals visible to mods and other players, use "_G.var = ...".  Can
+also be used to get any globals hidden by specials and player-local variables.
 
 Copyright and Licensing
 -----------------------
