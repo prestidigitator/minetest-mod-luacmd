@@ -6,7 +6,7 @@ string as a Lua chunk, as if it were being run in the body of a function inside
 some mod file.  Errors are reported to the player via in-game chat, as is
 anything sent to the print() function.  For example, entering the command:
 
-   ]/lua print("Hello self");
+   /lua print("Hello self");
 
 will result in the following output in the in-game chat console:
 
@@ -15,7 +15,7 @@ will result in the following output in the in-game chat console:
 
 whereas entering the (erroneous) command:
 
-   ]/lua ^
+   /lua ^
 
 will result in the following output:
 
