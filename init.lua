@@ -7,6 +7,11 @@ local function copyTable(t)
    return tc;
 end
 
+local function posToStr(pos)
+   return "(" .. pos.x .. ", " ..pos.y.. ", " .. pos.z .. ")";
+end
+local posMeta = { __tostring = posToStr };
+
 minetest.register_privilege(
    "lua",
    {
@@ -30,11 +35,22 @@ minetest.register_chatcommand(
                return;
             end
 
+            local player = minetest.get_player_by_name(name);
+            local pos = player:getpos();
+            setmetatable(pos, posMeta);
+
             local env = copyTable(getfenv(0));
             env.print =
                function(...)
-                  minetest.chat_send_player(name, table.concat({...}), false);
+                  str = "";
+                  for _, arg in ipairs({...}) do
+                     str = str .. tostring(arg);
+                  end
+                  minetest.chat_send_player(name, str, false);
                end;
+            env.myname = name;
+            env.me = player;
+            env.here = pos;
 
             setfenv(cmdFunc, env);
 
