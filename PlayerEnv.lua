@@ -1,3 +1,24 @@
+
+-- Like tostring, except that it works on tables.
+function tostring_tr(val)
+   if (type(val) == "table") then
+      local str = "{"
+
+      for k, e in pairs(val) do
+         str = str .. tostring_tr(k) .. " = " .. tostring_tr(e)
+
+          if next(val, k) ~= nil then
+             str = str .. ", "
+          end
+
+      end
+
+      return str.."}"
+   else
+      return tostring(val)
+   end
+end
+
 local PrintablePos =
 {
    __tostring = function(pos)
@@ -30,7 +51,7 @@ local PlayerEnv =
             return function(...)
                local str = "";
                for _, arg in ipairs({...}) do
-                  str = str .. tostring(arg);
+                  str = str .. tostring_tr(arg);
                end
                minetest.chat_send_player(player:get_player_name(), str, false);
             end
